@@ -5,352 +5,350 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>せどりダッシュボード</title>
 <style>
-body { font-family: Arial, sans-serif; margin: 12px; }
-h2 { margin: 8px 0; }
-.meta { color:#555; font-size: 12px; margin-bottom: 10px; }
-table { border-collapse: collapse; width: 100%; }
-th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
-th { background: #f2f2f2; position: sticky; top: 0; }
-.small { font-size: 12px; color: #666; }
-.badge { display:inline-block; padding:2px 6px; border-radius: 6px; font-size: 12px; border:1px solid #ccc; }
-.badge.sold { color:#b00020; border-color:#b00020; }
-.badge.on { color:#0b6b0b; border-color:#0b6b0b; }
-td { word-break: break-word; }
+:root {
+  --bg:#f6f7f9; --card:#fff; --bd:#e5e7eb; --tx:#111827; --muted:#6b7280;
+}
+body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--tx); }
+header { position:sticky; top:0; background:#fff; border-bottom:1px solid var(--bd); padding:12px 14px; z-index:10; }
+h1 { font-size:16px; margin:0; }
+.sub { font-size:12px; color:var(--muted); margin-top:4px; }
+main { padding: 12px 10px 24px; max-width: 980px; margin: 0 auto; }
+.card {
+  background:var(--card); border:1px solid var(--bd); border-radius:14px;
+  padding:12px; margin:10px 0; box-shadow: 0 1px 6px rgba(0,0,0,.04);
+}
+.card-head { display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+.diff { font-weight:700; }
+.diff-num { font-size:18px; }
+.meta { font-size:12px; color:var(--muted); }
+.cols { display:grid; grid-template-columns: 1fr; gap:10px; margin-top:10px; }
+@media (min-width: 720px) { .cols { grid-template-columns: 1fr 1fr; } }
+.col { border:1px solid var(--bd); border-radius:12px; padding:10px; background:#fff; }
+.site { font-size:12px; color:var(--muted); margin-bottom:6px; }
+.title { font-size:14px; font-weight:600; line-height:1.35; }
+.row { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:8px; }
+.price { font-size:16px; font-weight:700; }
+.badge {
+  display:inline-flex; align-items:center; padding:2px 8px; border-radius:999px;
+  border:1px solid var(--bd); font-size:12px; color:var(--muted); white-space:nowrap;
+}
+.badge.sold { border-color:#b91c1c; color:#b91c1c; }
+.badge.on { border-color:#15803d; color:#15803d; }
+.links { margin-top:10px; }
+.btn {
+  display:inline-block; text-decoration:none; padding:8px 10px; border-radius:10px;
+  border:1px solid var(--bd); background:#fff; color:var(--tx); font-size:13px;
+}
+.btn:active { transform: translateY(1px); }
+.muted { color:var(--muted); font-size:12px; }
+.id { margin-top:6px; word-break: break-all; }
+.foot { margin-top:10px; }
+.empty { padding:18px; text-align:center; color:var(--muted); }
 </style>
 </head>
 <body>
-<h2>せどりダッシュボード</h2>
-<div class="meta">更新: 2026-02-15 08:21:33 / 上位 100 件（price_diff 降順）</div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>mercari_title</th>
-      <th>mercari_price_int</th>
-      <th>mercari_sale_status</th>
-      <th>yahohuri_title</th>
-      <th>yahohuri_price_int</th>
-      <th>yahohuri_sale_status</th>
-      <th>price_diff</th>
-      <th>total_score</th>
-      <th>title_sim</th>
-      <th>created_at</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>2026 応用情報技術者 午後問題の重点対策</td>
-      <td>3,200</td>
-      <td>売り切れ</td>
-      <td>2025 応用情報技術者 午後問題の重点対策</td>
-      <td>2,200</td>
-      <td>販売中</td>
-      <td>1,000</td>
-      <td>0.840000</td>
-      <td>0.840000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>5,280</td>
-      <td>売り切れ</td>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>4,300</td>
-      <td>販売中</td>
-      <td>980</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>4,980</td>
-      <td>売り切れ</td>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>4,300</td>
-      <td>販売中</td>
-      <td>680</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>クラウドFinOps(第2版) : 協調的でリアルタイムなクラウド価値の意思決定</td>
-      <td>3,500</td>
-      <td>売り切れ</td>
-      <td>クラウドFinOps 第2版 ―協調的でリアルタイムなクラウド価値の意思決定</td>
-      <td>2,990</td>
-      <td>販売中</td>
-      <td>510</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>4,500</td>
-      <td>売り切れ</td>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>4,300</td>
-      <td>販売中</td>
-      <td>200</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>情報リテラシー FOM出版</td>
-      <td>888</td>
-      <td>売り切れ</td>
-      <td>情報リテラシー FOM出版</td>
-      <td>777</td>
-      <td>販売中</td>
-      <td>111</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>実践Claude Code入門―現場で活用するためのAIコーディングの思考法</td>
-      <td>3,000</td>
-      <td>売り切れ</td>
-      <td>実践Claude Code入門―現場で活用するためのAIコーディングの思考法</td>
-      <td>2,900</td>
-      <td>販売中</td>
-      <td>100</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>よくわかるマスター MOS Excel 365 対策テキスト&amp;問題集</td>
-      <td>1,900</td>
-      <td>売り切れ</td>
-      <td>MOS Excel 365 対策テキスト&amp;問題集 よくわかるマスター FOM出版</td>
-      <td>1,850</td>
-      <td>販売中</td>
-      <td>50</td>
-      <td>0.853659</td>
-      <td>0.853659</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>情報リテラシー FOM出版</td>
-      <td>888</td>
-      <td>売り切れ</td>
-      <td>情報リテラシー FOM出版</td>
-      <td>930</td>
-      <td>販売中</td>
-      <td>-42</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>MOS Word 365&amp;2019 対策テキスト&amp;問題集</td>
-      <td>1,100</td>
-      <td>売り切れ</td>
-      <td>MOS Word 365&amp;2019 対策テキスト&amp;問題集 【送料込】</td>
-      <td>1,298</td>
-      <td>販売中</td>
-      <td>-198</td>
-      <td>0.878788</td>
-      <td>0.878788</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>リーダブルコード より良いコードを書くためのシンプルで実践的なテクニック</td>
-      <td>1,400</td>
-      <td>売り切れ</td>
-      <td>リーダブルコード より良いコードを書くためのシンプルで実践的なテクニック</td>
-      <td>1,600</td>
-      <td>販売中</td>
-      <td>-200</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>リーダブルコード より良いコードを書くためのシンプルで実践的なテクニック</td>
-      <td>1,350</td>
-      <td>売り切れ</td>
-      <td>リーダブルコード より良いコードを書くためのシンプルで実践的なテクニック</td>
-      <td>1,600</td>
-      <td>販売中</td>
-      <td>-250</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>MOS Word 365&amp;2019 対策テキスト&amp;問題集</td>
-      <td>1,100</td>
-      <td>売り切れ</td>
-      <td>MOS Word 365&amp;2019 対策テキスト 問題集</td>
-      <td>1,350</td>
-      <td>販売中</td>
-      <td>-250</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>プログラムはなぜ動くのか &amp; コンピュータはなぜ動くのか 2冊セット</td>
-      <td>4,200</td>
-      <td>売り切れ</td>
-      <td>プログラムはなぜ動くのか コンピュータはなぜ動くのか 2冊セット</td>
-      <td>4,500</td>
-      <td>販売中</td>
-      <td>-300</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>よくわかるマスター MOS Excel 365 対策テキスト&amp;問題集</td>
-      <td>1,900</td>
-      <td>売り切れ</td>
-      <td>MOS Excel 365&amp;2019 対策テキスト&amp;問題集 (よくわかるマスター)</td>
-      <td>2,222</td>
-      <td>販売中</td>
-      <td>-322</td>
-      <td>0.875000</td>
-      <td>0.875000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>2025 応用情報技術者 午後問題の重点対策</td>
-      <td>1,700</td>
-      <td>売り切れ</td>
-      <td>2025 応用情報技術者 午後問題の重点対策</td>
-      <td>2,200</td>
-      <td>販売中</td>
-      <td>-500</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>リーダブルコード より良いコードを書くためのシンプルで実践的なテクニック</td>
-      <td>1,060</td>
-      <td>売り切れ</td>
-      <td>リーダブルコード より良いコードを書くためのシンプルで実践的なテクニック</td>
-      <td>1,600</td>
-      <td>販売中</td>
-      <td>-540</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>2025 応用情報技術者 午後問題の重点対策</td>
-      <td>1,700</td>
-      <td>売り切れ</td>
-      <td>[美品] 応用情報技術者 午後問題の重点対策 2025</td>
-      <td>2,250</td>
-      <td>販売中</td>
-      <td>-550</td>
-      <td>0.884615</td>
-      <td>0.884615</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>ふつうのLinuxプログラミング 第2版</td>
-      <td>3,500</td>
-      <td>売り切れ</td>
-      <td>ふつうのLinuxプログラミング 第2版</td>
-      <td>4,500</td>
-      <td>販売中</td>
-      <td>-1,000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>3,000</td>
-      <td>売り切れ</td>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>4,300</td>
-      <td>販売中</td>
-      <td>-1,300</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>3,000</td>
-      <td>売り切れ</td>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>4,300</td>
-      <td>販売中</td>
-      <td>-1,300</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>3,000</td>
-      <td>売り切れ</td>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>4,300</td>
-      <td>販売中</td>
-      <td>-1,300</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>現場で役立つシステム設計の原則 変更を楽で安全にするオブジェクト指向の実践技法</td>
-      <td>800</td>
-      <td>売り切れ</td>
-      <td>現場で役立つシステム設計の原則 変更を楽で安全にするオブジェクト指向の実践技法</td>
-      <td>2,500</td>
-      <td>販売中</td>
-      <td>-1,700</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>2,200</td>
-      <td>売り切れ</td>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>4,300</td>
-      <td>販売中</td>
-      <td>-2,100</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>2,000</td>
-      <td>売り切れ</td>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>4,300</td>
-      <td>販売中</td>
-      <td>-2,300</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-    <tr>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>1,700</td>
-      <td>売り切れ</td>
-      <td>Clean Architecture 達人に学ぶソフトウェアの構造と設計</td>
-      <td>4,300</td>
-      <td>販売中</td>
-      <td>-2,600</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>2026-02-14 18:01:12.807502+00:00</td>
-    </tr>
-  </tbody>
-</table>
-<div class="small">※ sale_status はDB保存値を表示</div>
+<header>
+  <h1>ダッシュボード</h1>
+  <div class="sub">更新: 2026-02-15 08:49:51 / 抽出: price_diff &gt; 0 / 上限: 200 件</div>
+</header>
+<main>
+  
+        <div class="card">
+          <div class="card-head">
+            <div class="diff">差額 <span class="diff-num">¥1,000</span></div>
+            <div class="meta">score 0.84 / sim 0.84</div>
+          </div>
+
+          <div class="cols">
+            <div class="col">
+              <div class="site">メルカリ</div>
+              <div class="title">2026 応用情報技術者 午後問題の重点対策</div>
+              <div class="row">
+                <div class="price">¥3,200</div>
+                <span class="badge sold">売り切れ</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://jp.mercari.com/item/m61619063236'>商品を開く</a>
+              </div>
+              <div class="id muted">m61619063236</div>
+            </div>
+
+            <div class="col">
+              <div class="site">Yahoo!フリマ</div>
+              <div class="title">2025 応用情報技術者 午後問題の重点対策</div>
+              <div class="row">
+                <div class="price">¥2,200</div>
+                <span class="badge on">販売中</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://paypayfleamarket.yahoo.co.jp/item/z537471490'>商品を開く</a>
+              </div>
+              <div class="id muted">z537471490</div>
+            </div>
+          </div>
+
+          <div class="foot muted">created_at: 2026-02-14 18:01:12.807502+00:00</div>
+        </div>
+        
+        <div class="card">
+          <div class="card-head">
+            <div class="diff">差額 <span class="diff-num">¥980</span></div>
+            <div class="meta">score 1.00 / sim 1.00</div>
+          </div>
+
+          <div class="cols">
+            <div class="col">
+              <div class="site">メルカリ</div>
+              <div class="title">Clean Architecture 達人に学ぶソフトウェアの構造と設計</div>
+              <div class="row">
+                <div class="price">¥5,280</div>
+                <span class="badge sold">売り切れ</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://jp.mercari.com/item/m88827128021'>商品を開く</a>
+              </div>
+              <div class="id muted">m88827128021</div>
+            </div>
+
+            <div class="col">
+              <div class="site">Yahoo!フリマ</div>
+              <div class="title">Clean Architecture 達人に学ぶソフトウェアの構造と設計</div>
+              <div class="row">
+                <div class="price">¥4,300</div>
+                <span class="badge on">販売中</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://paypayfleamarket.yahoo.co.jp/item/z557384586'>商品を開く</a>
+              </div>
+              <div class="id muted">z557384586</div>
+            </div>
+          </div>
+
+          <div class="foot muted">created_at: 2026-02-14 18:01:12.807502+00:00</div>
+        </div>
+        
+        <div class="card">
+          <div class="card-head">
+            <div class="diff">差額 <span class="diff-num">¥680</span></div>
+            <div class="meta">score 1.00 / sim 1.00</div>
+          </div>
+
+          <div class="cols">
+            <div class="col">
+              <div class="site">メルカリ</div>
+              <div class="title">Clean Architecture 達人に学ぶソフトウェアの構造と設計</div>
+              <div class="row">
+                <div class="price">¥4,980</div>
+                <span class="badge sold">売り切れ</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://jp.mercari.com/item/m66166829730'>商品を開く</a>
+              </div>
+              <div class="id muted">m66166829730</div>
+            </div>
+
+            <div class="col">
+              <div class="site">Yahoo!フリマ</div>
+              <div class="title">Clean Architecture 達人に学ぶソフトウェアの構造と設計</div>
+              <div class="row">
+                <div class="price">¥4,300</div>
+                <span class="badge on">販売中</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://paypayfleamarket.yahoo.co.jp/item/z557384586'>商品を開く</a>
+              </div>
+              <div class="id muted">z557384586</div>
+            </div>
+          </div>
+
+          <div class="foot muted">created_at: 2026-02-14 18:01:12.807502+00:00</div>
+        </div>
+        
+        <div class="card">
+          <div class="card-head">
+            <div class="diff">差額 <span class="diff-num">¥510</span></div>
+            <div class="meta">score 1.00 / sim 1.00</div>
+          </div>
+
+          <div class="cols">
+            <div class="col">
+              <div class="site">メルカリ</div>
+              <div class="title">クラウドFinOps(第2版) : 協調的でリアルタイムなクラウド価値の意思決定</div>
+              <div class="row">
+                <div class="price">¥3,500</div>
+                <span class="badge sold">売り切れ</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://jp.mercari.com/item/m42466399731'>商品を開く</a>
+              </div>
+              <div class="id muted">m42466399731</div>
+            </div>
+
+            <div class="col">
+              <div class="site">Yahoo!フリマ</div>
+              <div class="title">クラウドFinOps 第2版 ―協調的でリアルタイムなクラウド価値の意思決定</div>
+              <div class="row">
+                <div class="price">¥2,990</div>
+                <span class="badge on">販売中</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://paypayfleamarket.yahoo.co.jp/item/z536250902'>商品を開く</a>
+              </div>
+              <div class="id muted">z536250902</div>
+            </div>
+          </div>
+
+          <div class="foot muted">created_at: 2026-02-14 18:01:12.807502+00:00</div>
+        </div>
+        
+        <div class="card">
+          <div class="card-head">
+            <div class="diff">差額 <span class="diff-num">¥200</span></div>
+            <div class="meta">score 1.00 / sim 1.00</div>
+          </div>
+
+          <div class="cols">
+            <div class="col">
+              <div class="site">メルカリ</div>
+              <div class="title">Clean Architecture 達人に学ぶソフトウェアの構造と設計</div>
+              <div class="row">
+                <div class="price">¥4,500</div>
+                <span class="badge sold">売り切れ</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://jp.mercari.com/item/m34640166793'>商品を開く</a>
+              </div>
+              <div class="id muted">m34640166793</div>
+            </div>
+
+            <div class="col">
+              <div class="site">Yahoo!フリマ</div>
+              <div class="title">Clean Architecture 達人に学ぶソフトウェアの構造と設計</div>
+              <div class="row">
+                <div class="price">¥4,300</div>
+                <span class="badge on">販売中</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://paypayfleamarket.yahoo.co.jp/item/z557384586'>商品を開く</a>
+              </div>
+              <div class="id muted">z557384586</div>
+            </div>
+          </div>
+
+          <div class="foot muted">created_at: 2026-02-14 18:01:12.807502+00:00</div>
+        </div>
+        
+        <div class="card">
+          <div class="card-head">
+            <div class="diff">差額 <span class="diff-num">¥111</span></div>
+            <div class="meta">score 1.00 / sim 1.00</div>
+          </div>
+
+          <div class="cols">
+            <div class="col">
+              <div class="site">メルカリ</div>
+              <div class="title">情報リテラシー FOM出版</div>
+              <div class="row">
+                <div class="price">¥888</div>
+                <span class="badge sold">売り切れ</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://jp.mercari.com/item/m25067776165'>商品を開く</a>
+              </div>
+              <div class="id muted">m25067776165</div>
+            </div>
+
+            <div class="col">
+              <div class="site">Yahoo!フリマ</div>
+              <div class="title">情報リテラシー FOM出版</div>
+              <div class="row">
+                <div class="price">¥777</div>
+                <span class="badge on">販売中</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://paypayfleamarket.yahoo.co.jp/item/z556372940'>商品を開く</a>
+              </div>
+              <div class="id muted">z556372940</div>
+            </div>
+          </div>
+
+          <div class="foot muted">created_at: 2026-02-14 18:01:12.807502+00:00</div>
+        </div>
+        
+        <div class="card">
+          <div class="card-head">
+            <div class="diff">差額 <span class="diff-num">¥100</span></div>
+            <div class="meta">score 1.00 / sim 1.00</div>
+          </div>
+
+          <div class="cols">
+            <div class="col">
+              <div class="site">メルカリ</div>
+              <div class="title">実践Claude Code入門―現場で活用するためのAIコーディングの思考法</div>
+              <div class="row">
+                <div class="price">¥3,000</div>
+                <span class="badge sold">売り切れ</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://jp.mercari.com/item/m98593998813'>商品を開く</a>
+              </div>
+              <div class="id muted">m98593998813</div>
+            </div>
+
+            <div class="col">
+              <div class="site">Yahoo!フリマ</div>
+              <div class="title">実践Claude Code入門―現場で活用するためのAIコーディングの思考法</div>
+              <div class="row">
+                <div class="price">¥2,900</div>
+                <span class="badge on">販売中</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://paypayfleamarket.yahoo.co.jp/item/z558171328'>商品を開く</a>
+              </div>
+              <div class="id muted">z558171328</div>
+            </div>
+          </div>
+
+          <div class="foot muted">created_at: 2026-02-14 18:01:12.807502+00:00</div>
+        </div>
+        
+        <div class="card">
+          <div class="card-head">
+            <div class="diff">差額 <span class="diff-num">¥50</span></div>
+            <div class="meta">score 0.85 / sim 0.85</div>
+          </div>
+
+          <div class="cols">
+            <div class="col">
+              <div class="site">メルカリ</div>
+              <div class="title">よくわかるマスター MOS Excel 365 対策テキスト&amp;問題集</div>
+              <div class="row">
+                <div class="price">¥1,900</div>
+                <span class="badge sold">売り切れ</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://jp.mercari.com/item/m61482211928'>商品を開く</a>
+              </div>
+              <div class="id muted">m61482211928</div>
+            </div>
+
+            <div class="col">
+              <div class="site">Yahoo!フリマ</div>
+              <div class="title">MOS Excel 365 対策テキスト&amp;問題集 よくわかるマスター FOM出版</div>
+              <div class="row">
+                <div class="price">¥1,850</div>
+                <span class="badge on">販売中</span>
+              </div>
+              <div class="links">
+                <a class='btn' target='_blank' rel='noopener noreferrer' href='https://paypayfleamarket.yahoo.co.jp/item/z559134368'>商品を開く</a>
+              </div>
+              <div class="id muted">z559134368</div>
+            </div>
+          </div>
+
+          <div class="foot muted">created_at: 2026-02-14 18:01:12.807502+00:00</div>
+        </div>
+        
+</main>
 </body>
 </html>
