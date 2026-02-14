@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>せどりダッシュボード</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+h1 {
+    text-align: center;
+}
+.card {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+.price {
+    color: green;
+    font-weight: bold;
+}
+.sold {
+    color: red;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>せどりダッシュボード（テスト）</h1>
+
+    <div class="card">
+        <div>商品名：ITパスポート完全攻略</div>
+        <div class="price">価格：¥3,500</div>
+        <div>状態：販売中</div>
+    </div>
+
+    <div class="card">
+        <div>商品名：Pythonデータ分析入門</div>
+        <div class="price">価格：¥4,200</div>
+        <div class="sold">状態：売り切れ</div>
+    </div>
+
+    <p style="text-align:center;margin-top:30px;">
+        更新日時：<script>document.write(new Date().toLocaleString());</script>
+    </p>
+</div>
+
+</body>
+</html>
